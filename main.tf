@@ -66,7 +66,7 @@ resource "aviatrix_transit_gateway" "default" {
   tags                             = var.tags
   availability_domain              = local.cloud == "oci" ? aviatrix_vpc.default.availability_domains[0] : null
   fault_domain                     = local.cloud == "oci" ? aviatrix_vpc.default.fault_domains[0] : null
-  ha_availability_domain           = var.ha_gw ? (local.cloud == "oci" ? (aviatrix_vpc.default.region == "us-sanjose-1" ? aviatrix_vpc.default.availability_domains[1] : aviatrix_vpc.default.availability_domains[0]) : null) : null
+  ha_availability_domain           = var.ha_gw ? (local.cloud == "oci" ? (aviatrix_vpc.default.region == "us-sanjose-1" ? aviatrix_vpc.default.availability_domains[0] : aviatrix_vpc.default.availability_domains[1]) : null) : null
   ha_fault_domain                  = var.ha_gw ? (local.cloud == "oci" ? aviatrix_vpc.default.fault_domains[1] : null) : null
   enable_multi_tier_transit        = var.enable_multi_tier_transit
 
